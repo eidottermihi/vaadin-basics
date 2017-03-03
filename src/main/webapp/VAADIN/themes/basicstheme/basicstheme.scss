@@ -31,8 +31,65 @@
 
 @import "../valo/valo.scss";
 
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes redAlertAnimation {
+  from {background-color: red;}
+  to {background-color: black;}
+}
+
+@keyframes redAlertAnimation {
+  from {background-color: red;}
+  to {background-color: black;}
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes yellowAlertAnimation {
+  from {background-color: yellow;}
+  to {background-color: black;}
+}
+
+@keyframes yellowAlertAnimation {
+  from {background-color: yellow;}
+  to {background-color: black;}
+}
+
 @mixin basicstheme {
   @include valo;
 
   // Insert your own theme rules here
+  .v-button-link:after {
+    content: none;
+  }
+
+  .face {
+    border: 3px solid black;
+  }
+
+  .header {
+    background-color: palegreen;
+  }
+
+  .footer {
+    background-color: paleturquoise;
+  }
+
+  .navigation {
+    background-color: pink;
+  }
+
+  .noAlert {
+    background-color: green;
+  }
+
+  .yellowAlert {
+    background-color: yellow;
+    -webkit-animation: yellowAlertAnimation 600ms ease-in infinite alternate; /* Safari 4.0 - 8.0 */
+    animation: yellowAlertAnimation 600ms ease-in infinite alternate;
+  }
+
+  .redAlert {
+    background-color: red;
+    -webkit-animation: redAlertAnimation 400ms ease-in infinite alternate; /* Safari 4.0 - 8.0 */
+    animation: redAlertAnimation 400ms ease-in infinite alternate;
+  }
 }

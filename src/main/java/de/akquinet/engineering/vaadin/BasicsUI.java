@@ -3,6 +3,7 @@ package de.akquinet.engineering.vaadin;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
@@ -17,7 +18,10 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
-import de.akquinet.engineering.vaadin.exercise1.Exercise1;
+import de.akquinet.engineering.vaadin.buttonbar.ButtonBarView;
+import de.akquinet.engineering.vaadin.events.EventsView;
+import de.akquinet.engineering.vaadin.face.FaceView;
+import de.akquinet.engineering.vaadin.layouts.LayoutsView;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -44,9 +48,14 @@ public class BasicsUI extends UI {
         rootLayout.setExpandRatio(contentPanel, 1f);
 
         setNavigator(new Navigator(this, new CustomViewDisplay(contentPanel)));
-        getNavigator().addView(Exercise1.VIEW_NAME, new Exercise1());
-        getNavigator().navigateTo(Exercise1.VIEW_NAME);
-        
+        final View defaultView = new EventsView();
+        // the start view needs to have the empty string as view name
+        getNavigator().addView("", defaultView);
+        getNavigator().addView(EventsView.VIEW_NAME, defaultView);
+        getNavigator().addView(LayoutsView.VIEW_NAME, new LayoutsView());
+        getNavigator().addView(FaceView.VIEW_NAME, new FaceView());
+        getNavigator().addView(ButtonBarView.VIEW_NAME, new ButtonBarView());
+
         setContent(rootLayout);
     }
 
@@ -57,11 +66,14 @@ public class BasicsUI extends UI {
         logo.setWidth("150px");
 
         final VerticalLayout navigationLayout = new VerticalLayout();
-        navigationLayout.setWidth("200px");
+        navigationLayout.setWidth("300px");
         navigationLayout.addComponent(logo);
         navigationLayout.setComponentAlignment(logo, Alignment.MIDDLE_CENTER);
         navigationLayout.addComponent(new Label("<hr/>", ContentMode.HTML));
-        navigationLayout.addComponent(createNavigationButton("Exercise 1", Exercise1.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Events and Listeners", EventsView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Layouts", LayoutsView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("More Layouts", FaceView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Button Bar", ButtonBarView.VIEW_NAME));
 
         return navigationLayout;
     }
@@ -69,6 +81,7 @@ public class BasicsUI extends UI {
     private Button createNavigationButton(final String buttonCaption, final String viewName){
         final Button button = new Button(buttonCaption);
         button.setStyleName(ValoTheme.BUTTON_LINK);
+        button.addClickListener(e -> getNavigator().navigateTo(viewName));
         return button;
     }
 
