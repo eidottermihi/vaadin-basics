@@ -16,7 +16,8 @@ import de.akquinet.engineering.vaadin.ComponentView;
  */
 public class EventsView implements ComponentView, View
 {
-    public static final String VIEW_NAME = "events";
+    // the start view needs to have the empty string as view name
+    public static final String VIEW_NAME = "";
 
     private final VerticalLayout verticalLayout = new VerticalLayout();
 

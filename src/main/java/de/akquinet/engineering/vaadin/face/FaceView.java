@@ -6,7 +6,6 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
@@ -26,8 +25,10 @@ public class FaceView implements ComponentView, View
     {
         final Button leftEyeButton = new Button(VaadinIcons.EYE);
         leftEyeButton.setStyleName(ValoTheme.BUTTON_LINK);
+        leftEyeButton.addStyleName("eye");
         final Button rightEyeButton = new Button(VaadinIcons.EYE);
         rightEyeButton.setStyleName(ValoTheme.BUTTON_LINK);
+        rightEyeButton.addStyleName("eye");
 
         final HorizontalLayout horizontalLayout = new HorizontalLayout(leftEyeButton, rightEyeButton);
         horizontalLayout.setComponentAlignment(leftEyeButton, Alignment.MIDDLE_CENTER);
@@ -36,6 +37,7 @@ public class FaceView implements ComponentView, View
 
         final Button noseButton = new Button(VaadinIcons.CARET_UP);
         noseButton.setStyleName(ValoTheme.BUTTON_LINK);
+        noseButton.addStyleName("nose");
 
         final TextField teethField = new TextField();
         teethField.setWidth("200px");
@@ -48,13 +50,11 @@ public class FaceView implements ComponentView, View
         faceLayout.setExpandRatio(noseButton, 1f);
         faceLayout.setComponentAlignment(teethField, Alignment.MIDDLE_CENTER);
         faceLayout.setSizeFull();
+        faceLayout.setStyleName("face");
+        faceLayout.setWidth("350px");
+        faceLayout.setHeight("400px");
 
-        final CssLayout borderLayout = new CssLayout(faceLayout);
-        borderLayout.setStyleName("face");
-        borderLayout.setWidth("350px");
-        borderLayout.setHeight("400px");
-
-        rootLayout.addComponent(borderLayout);
+        rootLayout.addComponent(faceLayout);
     }
 
     @Override

@@ -3,7 +3,6 @@ package de.akquinet.engineering.vaadin;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
@@ -19,11 +18,13 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 import de.akquinet.engineering.vaadin.buttonbar.ButtonBarView;
+import de.akquinet.engineering.vaadin.databinding.DataBindingView;
 import de.akquinet.engineering.vaadin.events.EventsView;
 import de.akquinet.engineering.vaadin.face.FaceView;
 import de.akquinet.engineering.vaadin.layouts.LayoutsView;
 
 import javax.servlet.annotation.WebServlet;
+import java.util.Locale;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -37,6 +38,8 @@ public class BasicsUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+        setLocale(Locale.US);
+
         final HorizontalLayout rootLayout = new HorizontalLayout();
         rootLayout.setSizeFull();
 
@@ -48,13 +51,12 @@ public class BasicsUI extends UI {
         rootLayout.setExpandRatio(contentPanel, 1f);
 
         setNavigator(new Navigator(this, new CustomViewDisplay(contentPanel)));
-        final View defaultView = new EventsView();
-        // the start view needs to have the empty string as view name
-        getNavigator().addView("", defaultView);
-        getNavigator().addView(EventsView.VIEW_NAME, defaultView);
+
+        getNavigator().addView(EventsView.VIEW_NAME, new EventsView());
         getNavigator().addView(LayoutsView.VIEW_NAME, new LayoutsView());
         getNavigator().addView(FaceView.VIEW_NAME, new FaceView());
         getNavigator().addView(ButtonBarView.VIEW_NAME, new ButtonBarView());
+        getNavigator().addView(DataBindingView.VIEW_NAME, new DataBindingView());
 
         setContent(rootLayout);
     }
@@ -74,6 +76,7 @@ public class BasicsUI extends UI {
         navigationLayout.addComponent(createNavigationButton("Layouts", LayoutsView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("More Layouts", FaceView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Button Bar", ButtonBarView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Data Binding", DataBindingView.VIEW_NAME));
 
         return navigationLayout;
     }
