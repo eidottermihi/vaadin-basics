@@ -10,6 +10,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import de.akquinet.engineering.vaadin.ComponentView;
+import de.akquinet.engineering.vaadin.timerextension.TimerExtension;
 
 /**
  * @author Axel Meier, akquinet engineering GmbH
@@ -20,6 +21,9 @@ public class EventsView implements ComponentView, View
     public static final String VIEW_NAME = "";
 
     private final VerticalLayout verticalLayout = new VerticalLayout();
+
+    private int secondsOnPage = 0;
+    private TimerExtension timerExtension = null;
 
     public EventsView()
     {
@@ -35,8 +39,14 @@ public class EventsView implements ComponentView, View
         final Button showNotifButton = new Button("Say Hello");
         showNotifButton.addClickListener(
                                          (Button.ClickListener) e -> Notification.show("Hello " + nameField.getValue() + "!"));
-
         verticalLayout.addComponents(nameField, nameLabel, showNotifButton);
+
+        final String counterLabelText = "seconds on page: ";
+        final Label counterLabel = new Label(counterLabelText + secondsOnPage);
+        timerExtension = TimerExtension.create(counterLabel);
+        timerExtension.setIntervalInMs(1000);
+        timerExtension.addTimerListener(e -> counterLabel.setValue(counterLabelText + ++secondsOnPage));
+        verticalLayout.addComponent(counterLabel);
     }
 
     @Override
@@ -48,5 +58,6 @@ public class EventsView implements ComponentView, View
     @Override
     public void enter(final ViewChangeListener.ViewChangeEvent event)
     {
+        timerExtension.start();
     }
 }

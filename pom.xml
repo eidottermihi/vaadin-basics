@@ -66,6 +66,12 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-themes</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>de.akquinet.engineering.vaadin.timerextension</groupId>
+			<artifactId>timerextension</artifactId>
+			<version>0.2.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
