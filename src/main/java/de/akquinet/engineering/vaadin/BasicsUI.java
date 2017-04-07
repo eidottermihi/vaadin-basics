@@ -21,6 +21,7 @@ import de.akquinet.engineering.vaadin.buttonbar.ButtonBarView;
 import de.akquinet.engineering.vaadin.databinding.DataBindingView;
 import de.akquinet.engineering.vaadin.events.EventsView;
 import de.akquinet.engineering.vaadin.face.FaceView;
+import de.akquinet.engineering.vaadin.grid.GridView;
 import de.akquinet.engineering.vaadin.layouts.LayoutsView;
 
 import javax.servlet.annotation.WebServlet;
@@ -37,8 +38,8 @@ import java.util.Locale;
 public class BasicsUI extends UI {
 
     @Override
-    protected void init(VaadinRequest vaadinRequest) {
-        setLocale(Locale.US);
+    protected void init(final VaadinRequest vaadinRequest) {
+        Locale.setDefault(Locale.US);
 
         final HorizontalLayout rootLayout = new HorizontalLayout();
         rootLayout.setSizeFull();
@@ -57,6 +58,7 @@ public class BasicsUI extends UI {
         getNavigator().addView(FaceView.VIEW_NAME, new FaceView());
         getNavigator().addView(ButtonBarView.VIEW_NAME, new ButtonBarView());
         getNavigator().addView(DataBindingView.VIEW_NAME, new DataBindingView());
+        getNavigator().addView(GridView.VIEW_NAME, new GridView());
 
         setContent(rootLayout);
     }
@@ -77,6 +79,7 @@ public class BasicsUI extends UI {
         navigationLayout.addComponent(createNavigationButton("More Layouts", FaceView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Button Bar", ButtonBarView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Data Binding", DataBindingView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Grid", GridView.VIEW_NAME));
 
         return navigationLayout;
     }

@@ -101,4 +101,16 @@
     -webkit-animation: redAlertAnimation 400ms ease-in infinite alternate; /* Safari 4.0 - 8.0 */
     animation: redAlertAnimation 400ms ease-in infinite alternate;
   }
+
+  .v-grid-cell.align-right {
+    text-align: right;
+  }
+
+  .male {
+    color: navy;
+  }
+
+  .female {
+    color: deeppink;
+  }
 }

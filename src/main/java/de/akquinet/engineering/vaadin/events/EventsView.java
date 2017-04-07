@@ -36,10 +36,10 @@ public class EventsView implements ComponentView, View
         // BLUR gives the old Vaadin 7 behavior, now LAZY is default.
         nameField.setValueChangeMode(ValueChangeMode.BLUR);
 
-        final Button showNotifButton = new Button("Say Hello");
-        showNotifButton.addClickListener(
-                                         (Button.ClickListener) e -> Notification.show("Hello " + nameField.getValue() + "!"));
-        verticalLayout.addComponents(nameField, nameLabel, showNotifButton);
+        final Button showNotificationButton = new Button("Say Hello");
+        showNotificationButton.addClickListener((Button.ClickListener) e -> Notification
+                .show("Hello " + nameField.getValue() + "!"));
+        verticalLayout.addComponents(nameField, nameLabel, showNotificationButton);
 
         final String counterLabelText = "seconds on page: ";
         final Label counterLabel = new Label(counterLabelText + secondsOnPage);

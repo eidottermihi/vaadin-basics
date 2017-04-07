@@ -7,7 +7,6 @@ import com.vaadin.data.converter.StringToIntegerConverter;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.Setter;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
@@ -38,7 +37,7 @@ public class DataBindingView implements View, ComponentView
 
     public DataBindingView()
     {
-
+        // create dummy data
         final List<Locale> localeList = Arrays
                 .asList(Locale.GERMANY, Locale.US, Locale.FRANCE, new Locale("fi", "FI"));
 
@@ -87,7 +86,7 @@ public class DataBindingView implements View, ComponentView
             {
                 binder.writeBean(movie);
             }
-            catch (ValidationException e)
+            catch (final ValidationException e)
             {
                 e.printStackTrace();
             }
