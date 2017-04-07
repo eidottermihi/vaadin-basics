@@ -1,0 +1,93 @@
+package de.akquinet.engineering.vaadin.grid;
+
+import com.vaadin.data.Binder;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.DateField;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.IconGenerator;
+import com.vaadin.ui.ItemCaptionGenerator;
+import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.renderers.HtmlRenderer;
+import de.akquinet.engineering.vaadin.ComponentView;
+
+import java.util.List;
+
+/**
+ * @author Axel Meier, akquinet engineering GmbH
+ */
+public class EditableGridView implements View, ComponentView
+{
+    public static final String VIEW_NAME = "editablegrid";
+
+    private final VerticalLayout rootLayout = new VerticalLayout();
+
+    public EditableGridView()
+    {
+        final List<Player> playerList = PlayerGenerator.createPlayers(10);
+
+        final Grid<Player> grid = new Grid<>(Player.class);
+        grid.setItems(playerList);
+
+        grid.setColumns("name", "dateOfBirth");
+
+        final Binder<Player> binder = grid.getEditor().getBinder();
+
+        final TextField nameField = new TextField();
+        binder.forField(nameField)
+                .asRequired("name is mandatory")
+                .bind("name");
+        grid.getColumn("name").setEditorComponent(nameField);
+
+        final DateField dateField = new DateField();
+        dateField.setDateFormat("yyyy-MM-dd");
+        binder.bind(dateField, "dateOfBirth");
+        grid.getColumn("dateOfBirth").setEditorComponent(dateField);
+
+        final Grid.Column<Player, String> sexColumn = grid
+                .addColumn(player ->
+                {
+                    final SexPresentation sexPresentation = SexPresentation
+                            .getPresentation(player.getSex());
+                    return String.format("%s %s",
+                                         sexPresentation
+                                                 .getIcon().getHtml(),
+                                         sexPresentation.getName());
+                })
+                .setRenderer(new HtmlRenderer())
+                .setCaption("Sex");
+
+        final ComboBox<Sex> sexComboBox = new ComboBox<>();
+        sexComboBox.setItems(Sex.values());
+        sexComboBox.setItemIconGenerator((IconGenerator<Sex>) sex -> SexPresentation
+                .getPresentation(sex).getIcon());
+        sexComboBox
+                .setItemCaptionGenerator((ItemCaptionGenerator<Sex>) sex -> SexPresentation
+                        .getPresentation(sex).getName());
+        sexComboBox.setEmptySelectionAllowed(false);
+        final Binder.Binding<Player, Sex> sexBinding = binder
+                .bind(sexComboBox, Player::getSex, Player::setSex);
+        sexColumn.setEditorBinding(sexBinding);
+
+        grid.getEditor().setEnabled(true);
+
+        grid.setSizeFull();
+        rootLayout.setSizeFull();
+        rootLayout.addComponent(grid);
+    }
+
+    @Override
+    public void enter(final ViewChangeListener.ViewChangeEvent event)
+    {
+
+    }
+
+    @Override
+    public Component getComponent()
+    {
+        return rootLayout;
+    }
+}

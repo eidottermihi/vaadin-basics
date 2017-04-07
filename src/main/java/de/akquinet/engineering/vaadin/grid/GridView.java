@@ -3,7 +3,6 @@ package de.akquinet.engineering.vaadin.grid;
 import com.vaadin.data.HasValue;
 import com.vaadin.data.provider.DataProvider;
 import com.vaadin.data.provider.ListDataProvider;
-import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.SerializableComparator;
@@ -66,19 +65,16 @@ public class GridView implements View, ComponentView
                 .setHidable(true);
 
         // Bonus: show the player's sex with symbols in different colors
-        playerGrid.addColumn(player -> player.getSex() == Sex.FEMALE
-                                       ? VaadinIcons.FEMALE.getHtml()
-                                       : VaadinIcons.MALE.getHtml())
+        playerGrid.addColumn(player -> SexPresentation
+                .getPresentation(player.getSex()).getIcon().getHtml())
                 .setRenderer(new HtmlRenderer())
-                .setStyleGenerator(player -> player.getSex() == Sex.FEMALE
-                                             ? "female"
-                                             : "male")
+                .setStyleGenerator(player -> SexPresentation
+                        .getPresentation(player.getSex()).getStyleName())
                 .setComparator((SerializableComparator<Player>) (o1, o2) -> Sex.compare(o1.getSex(), o2.getSex()))
                 .setCaption("Sex").setHidable(true);
 
         playerGrid
                 .addColumn(Player::getPoints)
-//                .setRenderer(new NumberRenderer("%d", UI.getCurrent().getLocale()))
                 .setRenderer(new NumberRenderer(new DecimalFormat()))
                 .setStyleGenerator(alignRightStyle)
                 .setCaption("Points");

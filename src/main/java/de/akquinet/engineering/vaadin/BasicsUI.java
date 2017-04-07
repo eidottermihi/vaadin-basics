@@ -21,6 +21,7 @@ import de.akquinet.engineering.vaadin.buttonbar.ButtonBarView;
 import de.akquinet.engineering.vaadin.databinding.DataBindingView;
 import de.akquinet.engineering.vaadin.events.EventsView;
 import de.akquinet.engineering.vaadin.face.FaceView;
+import de.akquinet.engineering.vaadin.grid.EditableGridView;
 import de.akquinet.engineering.vaadin.grid.GridView;
 import de.akquinet.engineering.vaadin.layouts.LayoutsView;
 
@@ -59,6 +60,7 @@ public class BasicsUI extends UI {
         getNavigator().addView(ButtonBarView.VIEW_NAME, new ButtonBarView());
         getNavigator().addView(DataBindingView.VIEW_NAME, new DataBindingView());
         getNavigator().addView(GridView.VIEW_NAME, new GridView());
+        getNavigator().addView(EditableGridView.VIEW_NAME, new EditableGridView());
 
         setContent(rootLayout);
     }
@@ -80,6 +82,7 @@ public class BasicsUI extends UI {
         navigationLayout.addComponent(createNavigationButton("Button Bar", ButtonBarView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Data Binding", DataBindingView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Grid", GridView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Editable Grid", EditableGridView.VIEW_NAME));
 
         return navigationLayout;
     }
