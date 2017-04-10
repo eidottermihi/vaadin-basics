@@ -30,15 +30,19 @@
 // Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
 
 $v-background-color: hsl(0, 0%, 39%);
-$v-focus-color: #C13B70;
+$v-focus-color: #A8C324;
 
 @import "../valo/valo.scss";
 
 @mixin specialtheme {
   @include valo;
 
-  .v-button-special-custom-style .v-button-wrap .v-button-caption {
-    font-weight: bold;
-    font-style: italic;
+  .v-button-special-custom-style {
+    @include valo-button-style($background-color: #FFCC00);
+
+    .v-button-wrap .v-button-caption {
+      font-weight: bold;
+      font-style: italic;
+    }
   }
 }
