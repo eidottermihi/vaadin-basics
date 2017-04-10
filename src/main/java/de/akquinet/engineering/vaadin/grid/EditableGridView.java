@@ -47,30 +47,30 @@ public class EditableGridView implements View, ComponentView
         binder.bind(dateField, "dateOfBirth");
         grid.getColumn("dateOfBirth").setEditorComponent(dateField);
 
-        final Grid.Column<Player, String> sexColumn = grid
+        final Grid.Column<Player, String> genderColumn = grid
                 .addColumn(player ->
                 {
-                    final SexPresentation sexPresentation = SexPresentation
-                            .getPresentation(player.getSex());
+                    final GenderPresentation genderPresentation = GenderPresentation
+                            .getPresentation(player.getGender());
                     return String.format("%s %s",
-                                         sexPresentation
+                                         genderPresentation
                                                  .getIcon().getHtml(),
-                                         sexPresentation.getName());
+                                         genderPresentation.getName());
                 })
                 .setRenderer(new HtmlRenderer())
                 .setCaption("Sex");
 
-        final ComboBox<Sex> sexComboBox = new ComboBox<>();
-        sexComboBox.setItems(Sex.values());
-        sexComboBox.setItemIconGenerator((IconGenerator<Sex>) sex -> SexPresentation
-                .getPresentation(sex).getIcon());
-        sexComboBox
-                .setItemCaptionGenerator((ItemCaptionGenerator<Sex>) sex -> SexPresentation
-                        .getPresentation(sex).getName());
-        sexComboBox.setEmptySelectionAllowed(false);
-        final Binder.Binding<Player, Sex> sexBinding = binder
-                .bind(sexComboBox, Player::getSex, Player::setSex);
-        sexColumn.setEditorBinding(sexBinding);
+        final ComboBox<Gender> genderComboBox = new ComboBox<>();
+        genderComboBox.setItems(Gender.values());
+        genderComboBox.setItemIconGenerator((IconGenerator<Gender>) gender -> GenderPresentation
+                .getPresentation(gender).getIcon());
+        genderComboBox
+                .setItemCaptionGenerator((ItemCaptionGenerator<Gender>) gender -> GenderPresentation
+                        .getPresentation(gender).getName());
+        genderComboBox.setEmptySelectionAllowed(false);
+        final Binder.Binding<Player, Gender> genderBinding = binder
+                .bind(genderComboBox, Player::getGender, Player::setGender);
+        genderColumn.setEditorBinding(genderBinding);
 
         grid.getEditor().setEnabled(true);
 

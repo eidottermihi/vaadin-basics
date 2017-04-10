@@ -6,28 +6,28 @@ import com.vaadin.server.FontIcon;
 /**
  * @author Axel Meier, akquinet engineering GmbH
  */
-public enum SexPresentation
+public enum GenderPresentation
 {
-    MALE(Sex.MALE, VaadinIcons.MALE, "male", "male"),
+    MALE(Gender.MALE, VaadinIcons.MALE, "male", "male"),
 
-    FEMALE(Sex.FEMALE, VaadinIcons.FEMALE, "female", "female");
+    FEMALE(Gender.FEMALE, VaadinIcons.FEMALE, "female", "female");
 
-    private Sex sex;
+    private Gender gender;
     private FontIcon icon;
     private String name;
     private String styleName;
 
-    SexPresentation(final Sex sex, final FontIcon icon,
-                            final String name, final String styleName){
-        this.sex = sex;
+    GenderPresentation(final Gender gender, final FontIcon icon,
+                       final String name, final String styleName){
+        this.gender = gender;
         this.icon = icon;
         this.name = name;
         this.styleName = styleName;
     }
 
-    public Sex getSex()
+    public Gender getGender()
     {
-        return sex;
+        return gender;
     }
 
     public FontIcon getIcon()
@@ -45,10 +45,10 @@ public enum SexPresentation
         return styleName;
     }
 
-    public static SexPresentation getPresentation(final Sex sex){
-        for (final SexPresentation sexPresentation : values()){
-            if (sex == sexPresentation.sex){
-                return sexPresentation;
+    public static GenderPresentation getPresentation(final Gender gender){
+        for (final GenderPresentation genderPresentation : values()){
+            if (gender == genderPresentation.gender){
+                return genderPresentation;
             }
         }
 

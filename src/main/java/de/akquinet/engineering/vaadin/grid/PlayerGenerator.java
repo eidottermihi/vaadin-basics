@@ -98,13 +98,13 @@ public final class PlayerGenerator
 
     private Player createPlayer()
     {
-        final Sex sex = Sex.values()[random.nextInt(Sex.values().length)];
+        final Gender gender = Gender.values()[random.nextInt(Gender.values().length)];
         final LocalDate startDate = LocalDate.of(1950, 1, 1);
         final LocalDate dateOfBirth = startDate.plusDays(random.nextInt(50 * 365));
         final int points = 10 * createPoints(10000);
         final int medals = Math.max(0, createPoints(points / 1000) - 10);
-        return new Player(String.format(Locale.ROOT, "%s %s", getFirstName(sex), pick(lastNames)),
-                dateOfBirth, sex, points, medals);
+        return new Player(String.format(Locale.ROOT, "%s %s", getFirstName(gender), pick(lastNames)),
+                dateOfBirth, gender, points, medals);
     }
 
     private int createPoints(final int max)
@@ -132,9 +132,9 @@ public final class PlayerGenerator
         return list.get(random.nextInt(list.size()));
     }
 
-    private String getFirstName(final Sex sex)
+    private String getFirstName(final Gender gender)
     {
-        final List<String> firstNames = sex == Sex.FEMALE
+        final List<String> firstNames = gender == Gender.FEMALE
                 ? femaleFirstNames
                 : maleFirstNames;
         return pick(firstNames);

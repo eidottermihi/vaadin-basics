@@ -6,12 +6,12 @@ package de.akquinet.engineering.vaadin.grid;
 /**
  * @author Axel Meier, akquinet engineering GmbH
  */
-public enum Sex
+public enum Gender
 {
     MALE,
     FEMALE;
 
-    public static int compare(final Sex s1, final Sex s2) {
-        return Integer.compare(s1.ordinal(), s2.ordinal());
+    public static int compare(final Gender g1, final Gender g2) {
+        return Integer.compare(g1.ordinal(), g2.ordinal());
     }
 }

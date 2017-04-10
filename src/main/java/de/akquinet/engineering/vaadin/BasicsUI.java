@@ -24,6 +24,7 @@ import de.akquinet.engineering.vaadin.face.FaceView;
 import de.akquinet.engineering.vaadin.grid.EditableGridView;
 import de.akquinet.engineering.vaadin.grid.GridView;
 import de.akquinet.engineering.vaadin.layouts.LayoutsView;
+import de.akquinet.engineering.vaadin.theming.ThemingView;
 
 import javax.servlet.annotation.WebServlet;
 import java.util.Locale;
@@ -41,6 +42,8 @@ public class BasicsUI extends UI {
     @Override
     protected void init(final VaadinRequest vaadinRequest) {
         Locale.setDefault(Locale.US);
+
+        getPage().setTitle("Vaadin Basics");
 
         final HorizontalLayout rootLayout = new HorizontalLayout();
         rootLayout.setSizeFull();
@@ -61,6 +64,7 @@ public class BasicsUI extends UI {
         getNavigator().addView(DataBindingView.VIEW_NAME, new DataBindingView());
         getNavigator().addView(GridView.VIEW_NAME, new GridView());
         getNavigator().addView(EditableGridView.VIEW_NAME, new EditableGridView());
+        getNavigator().addView(ThemingView.VIEW_NAME, new ThemingView());
 
         setContent(rootLayout);
     }
@@ -83,6 +87,7 @@ public class BasicsUI extends UI {
         navigationLayout.addComponent(createNavigationButton("Data Binding", DataBindingView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Grid", GridView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Editable Grid", EditableGridView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Theming", ThemingView.VIEW_NAME));
 
         return navigationLayout;
     }

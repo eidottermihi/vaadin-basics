@@ -65,12 +65,12 @@ public class GridView implements View, ComponentView
                 .setHidable(true);
 
         // Bonus: show the player's sex with symbols in different colors
-        playerGrid.addColumn(player -> SexPresentation
-                .getPresentation(player.getSex()).getIcon().getHtml())
+        playerGrid.addColumn(player -> GenderPresentation
+                .getPresentation(player.getGender()).getIcon().getHtml())
                 .setRenderer(new HtmlRenderer())
-                .setStyleGenerator(player -> SexPresentation
-                        .getPresentation(player.getSex()).getStyleName())
-                .setComparator((SerializableComparator<Player>) (o1, o2) -> Sex.compare(o1.getSex(), o2.getSex()))
+                .setStyleGenerator(player -> GenderPresentation
+                        .getPresentation(player.getGender()).getStyleName())
+                .setComparator((SerializableComparator<Player>) (o1, o2) -> Gender.compare(o1.getGender(), o2.getGender()))
                 .setCaption("Sex").setHidable(true);
 
         playerGrid

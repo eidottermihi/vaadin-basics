@@ -11,7 +11,7 @@ public class Player
 {
     private String name;
     private LocalDate dateOfBirth;
-    private Sex sex;
+    private Gender gender;
     private long points;
     private int medals;
 
@@ -20,11 +20,11 @@ public class Player
     }
 
     public Player(final String name, final LocalDate dateOfBirth,
-                  final Sex sex, final long points, final int medals)
+                  final Gender gender, final long points, final int medals)
     {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
-        this.sex = sex;
+        this.gender = gender;
         this.points = points;
         this.medals = medals;
     }
@@ -54,14 +54,14 @@ public class Player
         this.name = name;
     }
 
-    public Sex getSex()
+    public Gender getGender()
     {
-        return sex;
+        return gender;
     }
 
-    public void setSex(final Sex sex)
+    public void setGender(final Gender gender)
     {
-        this.sex = sex;
+        this.gender = gender;
     }
 
     public long getPoints()
