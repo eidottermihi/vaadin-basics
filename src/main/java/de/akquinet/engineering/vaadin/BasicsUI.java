@@ -19,6 +19,8 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 import de.akquinet.engineering.vaadin.buttonbar.ButtonBarView;
 import de.akquinet.engineering.vaadin.databinding.DataBindingView;
+import de.akquinet.engineering.vaadin.demos.binding.BindingView;
+import de.akquinet.engineering.vaadin.demos.buffering.BufferingView;
 import de.akquinet.engineering.vaadin.events.EventsView;
 import de.akquinet.engineering.vaadin.face.FaceView;
 import de.akquinet.engineering.vaadin.grid.EditableGridView;
@@ -48,6 +50,7 @@ public class BasicsUI extends UI {
         getPage().setTitle("Vaadin Basics");
 
         final HorizontalLayout rootLayout = new HorizontalLayout();
+        rootLayout.setSpacing(false);
         rootLayout.setSizeFull();
 
         rootLayout.addComponent(createNavigation());
@@ -69,6 +72,8 @@ public class BasicsUI extends UI {
         getNavigator().addView(ThemingView.VIEW_NAME, new ThemingView());
         getNavigator().addView(ResourcesView.VIEW_NAME, new ResourcesView());
         getNavigator().addView(RatingStarsView.VIEW_NAME, new RatingStarsView());
+        getNavigator().addView(BufferingView.VIEW_NAME, new BufferingView());
+        getNavigator().addView(BindingView.VIEW_NAME, new BindingView());
 
         setContent(rootLayout);
     }
@@ -80,10 +85,13 @@ public class BasicsUI extends UI {
         logo.setWidth("150px");
 
         final VerticalLayout navigationLayout = new VerticalLayout();
-        navigationLayout.setWidth("300px");
         navigationLayout.addComponent(logo);
         navigationLayout.setComponentAlignment(logo, Alignment.MIDDLE_CENTER);
         navigationLayout.addComponent(new Label("<hr/>", ContentMode.HTML));
+
+        final Label exercisesLabel = new Label("Exercises");
+        exercisesLabel.setStyleName(ValoTheme.LABEL_H3);
+        navigationLayout.addComponent(exercisesLabel);
         navigationLayout.addComponent(createNavigationButton("Events and Listeners", EventsView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Layouts", LayoutsView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("More Layouts", FaceView.VIEW_NAME));
@@ -95,7 +103,18 @@ public class BasicsUI extends UI {
         navigationLayout.addComponent(createNavigationButton("Resources", ResourcesView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Using Add-ons", RatingStarsView.VIEW_NAME));
 
-        return navigationLayout;
+        final Label demoLabel = new Label("Demos");
+        demoLabel.setStyleName(ValoTheme.LABEL_H3);
+        navigationLayout.addComponent(demoLabel);
+
+        navigationLayout.addComponent(createNavigationButton("Buffering", BufferingView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Binding", BindingView.VIEW_NAME));
+
+        final Panel navigationPanel = new Panel(navigationLayout);
+        navigationPanel.setStyleName(ValoTheme.PANEL_BORDERLESS);
+        navigationPanel.setHeight("100%");
+        navigationPanel.setWidth("300px");
+        return navigationPanel;
     }
 
     private Button createNavigationButton(final String buttonCaption, final String viewName){
