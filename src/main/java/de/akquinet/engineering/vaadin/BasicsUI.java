@@ -24,6 +24,8 @@ import de.akquinet.engineering.vaadin.face.FaceView;
 import de.akquinet.engineering.vaadin.grid.EditableGridView;
 import de.akquinet.engineering.vaadin.grid.GridView;
 import de.akquinet.engineering.vaadin.layouts.LayoutsView;
+import de.akquinet.engineering.vaadin.ratingstars.RatingStarsView;
+import de.akquinet.engineering.vaadin.resources.ResourcesView;
 import de.akquinet.engineering.vaadin.theming.ThemingView;
 
 import javax.servlet.annotation.WebServlet;
@@ -65,6 +67,8 @@ public class BasicsUI extends UI {
         getNavigator().addView(GridView.VIEW_NAME, new GridView());
         getNavigator().addView(EditableGridView.VIEW_NAME, new EditableGridView());
         getNavigator().addView(ThemingView.VIEW_NAME, new ThemingView());
+        getNavigator().addView(ResourcesView.VIEW_NAME, new ResourcesView());
+        getNavigator().addView(RatingStarsView.VIEW_NAME, new RatingStarsView());
 
         setContent(rootLayout);
     }
@@ -88,6 +92,8 @@ public class BasicsUI extends UI {
         navigationLayout.addComponent(createNavigationButton("Grid", GridView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Editable Grid", EditableGridView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Theming", ThemingView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Resources", ResourcesView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Using Add-ons", RatingStarsView.VIEW_NAME));
 
         return navigationLayout;
     }
