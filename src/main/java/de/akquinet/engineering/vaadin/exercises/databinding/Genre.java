@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.databinding;
+package de.akquinet.engineering.vaadin.exercises.databinding;
 
 /**
  * @author Axel Meier, akquinet engineering GmbH

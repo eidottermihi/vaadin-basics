@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.face;
+package de.akquinet.engineering.vaadin.exercises.face;
 
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
@@ -47,7 +47,7 @@ public class FaceView implements ComponentView, View
         faceLayout.addComponents(horizontalLayout, noseButton, teethField);
         faceLayout.setComponentAlignment(horizontalLayout, Alignment.MIDDLE_CENTER);
         faceLayout.setComponentAlignment(noseButton, Alignment.MIDDLE_CENTER);
-        faceLayout.setExpandRatio(noseButton, 1f);
+        faceLayout.setExpandRatio(noseButton, 1.0f);
         faceLayout.setComponentAlignment(teethField, Alignment.MIDDLE_CENTER);
         faceLayout.setSizeFull();
         faceLayout.setStyleName("face");

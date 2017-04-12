@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.resources;
+package de.akquinet.engineering.vaadin.exercises.resources;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -58,7 +58,7 @@ public class ResourcesView implements View, ComponentView
                             upload.interruptUpload();
                         }
                     }
-                    catch (MimeTypeParseException e)
+                    catch (final MimeTypeParseException e)
                     {
                         e.printStackTrace();
                         upload.interruptUpload();
@@ -102,7 +102,7 @@ public class ResourcesView implements View, ComponentView
         });
         upload.addStartedListener(event ->
         {
-            progressBar.setValue(0f);
+            progressBar.setValue(0.0f);
             progressBar.setVisible(true);
         });
         upload.addFinishedListener(event -> progressBar.setVisible(false));

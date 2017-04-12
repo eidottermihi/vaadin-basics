@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.ratingstars;
+package de.akquinet.engineering.vaadin.exercises.ratingstars;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;

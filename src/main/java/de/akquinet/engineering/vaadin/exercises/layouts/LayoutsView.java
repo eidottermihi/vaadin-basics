@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.layouts;
+package de.akquinet.engineering.vaadin.exercises.layouts;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -44,9 +44,9 @@ public class LayoutsView implements ComponentView, View
         main.setSizeFull();
         main.setMargin(false);
         main.setSpacing(false);
-        main.setExpandRatio(content, 1f);
+        main.setExpandRatio(content, 1.0f);
         rootLayout.addComponents(header, main, footer);
-        rootLayout.setExpandRatio(main, 1f);
+        rootLayout.setExpandRatio(main, 1.0f);
         rootLayout.setSpacing(false);
         rootLayout.setSizeFull();
     }

@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.grid;
+package de.akquinet.engineering.vaadin.exercises.grid;
 
 import java.time.LocalDate;
 import java.time.Period;

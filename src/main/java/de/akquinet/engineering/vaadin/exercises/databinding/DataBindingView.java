@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.databinding;
+package de.akquinet.engineering.vaadin.exercises.databinding;
 
 import com.vaadin.data.Binder;
 import com.vaadin.data.ValidationException;
@@ -49,7 +49,7 @@ public class DataBindingView implements View, ComponentView
                         new Genre("fiction", "drama"),
                         new Genre("fiction", "science fiction"));
 
-        final Movie movie = new Movie("Trumbo", 124, new HashSet<Locale>(Arrays
+        final Movie movie = Movie.create("Trumbo", 124, new HashSet<>(Arrays
                 .asList(Locale.GERMANY, Locale.US)),
                 new Genre("fiction", "drama"));
 

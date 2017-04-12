@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.theming;
+package de.akquinet.engineering.vaadin.exercises.theming;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;

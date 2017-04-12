@@ -10,7 +10,7 @@ import com.vaadin.ui.SingleComponentContainer;
  */
 public class CustomViewDisplay implements ViewDisplay
 {
-    public final SingleComponentContainer contentNode;
+    private final SingleComponentContainer contentNode;
 
     public CustomViewDisplay(final SingleComponentContainer contentNode)
     {

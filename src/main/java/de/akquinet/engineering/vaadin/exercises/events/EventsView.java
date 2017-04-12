@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.events;
+package de.akquinet.engineering.vaadin.exercises.events;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -20,7 +20,7 @@ public class EventsView implements ComponentView, View
     // the start view needs to have the empty string as view name
     public static final String VIEW_NAME = "";
 
-    private final VerticalLayout verticalLayout = new VerticalLayout();
+    private final VerticalLayout rootLayout = new VerticalLayout();
 
     private int secondsOnPage = 0;
     private TimerExtension timerExtension = null;
@@ -39,20 +39,20 @@ public class EventsView implements ComponentView, View
         final Button showNotificationButton = new Button("Say Hello");
         showNotificationButton.addClickListener((Button.ClickListener) e -> Notification
                 .show("Hello " + nameField.getValue() + "!"));
-        verticalLayout.addComponents(nameField, nameLabel, showNotificationButton);
+        rootLayout.addComponents(nameField, nameLabel, showNotificationButton);
 
         final String counterLabelText = "seconds on page: ";
         final Label counterLabel = new Label(counterLabelText + secondsOnPage);
         timerExtension = TimerExtension.create(counterLabel);
         timerExtension.setIntervalInMs(1000);
         timerExtension.addTimerListener(e -> counterLabel.setValue(counterLabelText + ++secondsOnPage));
-        verticalLayout.addComponent(counterLabel);
+        rootLayout.addComponent(counterLabel);
     }
 
     @Override
     public Component getComponent()
     {
-        return verticalLayout;
+        return rootLayout;
     }
 
     @Override

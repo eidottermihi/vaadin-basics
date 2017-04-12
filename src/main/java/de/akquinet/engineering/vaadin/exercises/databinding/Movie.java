@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.databinding;
+package de.akquinet.engineering.vaadin.exercises.databinding;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,12 +17,14 @@ public class Movie
 
     public Movie(){}
 
-    public Movie(final String title, final int durationInMinutes, final Set<Locale> locales, final Genre genre)
-    {
-        this.title = title;
-        this.durationInMinutes = durationInMinutes;
-        setLocales(locales);
-        this.genre = genre;
+    public static Movie create(final String title, final int durationInMinutes,
+                               final Set<Locale> locales, final Genre genre){
+        final Movie movie = new Movie();
+        movie.title = title;
+        movie.durationInMinutes = durationInMinutes;
+        movie.setLocales(locales);
+        movie.genre = genre;
+        return movie;
     }
 
     public String getTitle()

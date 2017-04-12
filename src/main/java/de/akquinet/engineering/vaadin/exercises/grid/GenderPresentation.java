@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.grid;
+package de.akquinet.engineering.vaadin.exercises.grid;
 
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.FontIcon;
@@ -12,10 +12,10 @@ public enum GenderPresentation
 
     FEMALE(Gender.FEMALE, VaadinIcons.FEMALE, "female", "female");
 
-    private Gender gender;
-    private FontIcon icon;
-    private String name;
-    private String styleName;
+    private final Gender gender;
+    private final FontIcon icon;
+    private final String name;
+    private final String styleName;
 
     GenderPresentation(final Gender gender, final FontIcon icon,
                        final String name, final String styleName){

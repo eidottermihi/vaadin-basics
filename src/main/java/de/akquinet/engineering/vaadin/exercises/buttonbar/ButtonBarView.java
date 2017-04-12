@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.buttonbar;
+package de.akquinet.engineering.vaadin.exercises.buttonbar;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -33,7 +33,7 @@ public class ButtonBarView implements ComponentView, View
         final Button redButton = new Button("Red", event -> alertLabel.setStyleName("redAlert"));
         final Button resetButton = new Button("Reset", event -> alertLabel.setStyleName("noAlert"));
         buttonBar.addComponents(new Label("Alert panel"), yellowButton, redButton, resetButton);
-        buttonBar.setExpandRatio(yellowButton, 1f);
+        buttonBar.setExpandRatio(yellowButton, 1.0f);
         buttonBar.setComponentAlignment(yellowButton, Alignment.TOP_RIGHT);
     }
 

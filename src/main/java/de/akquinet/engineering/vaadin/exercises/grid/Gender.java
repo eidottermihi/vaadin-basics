@@ -1,7 +1,4 @@
-/*
- * WEAT EABR
- */
-package de.akquinet.engineering.vaadin.grid;
+package de.akquinet.engineering.vaadin.exercises.grid;
 
 /**
  * @author Axel Meier, akquinet engineering GmbH

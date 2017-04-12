@@ -1,4 +1,4 @@
-package de.akquinet.engineering.vaadin.grid;
+package de.akquinet.engineering.vaadin.exercises.grid;
 
 import com.vaadin.data.HasValue;
 import com.vaadin.data.provider.DataProvider;
@@ -57,7 +57,7 @@ public class GridView implements View, ComponentView
                 .setCaption("Date of Birth")
                 .setComparator((SerializableComparator<Player>) (o1, o2) -> o1.getDateOfBirth()
                         .compareTo(o2.getDateOfBirth()))
-                .setWidth(200d)
+                .setWidth(200.0d)
                 .setResizable(false)
                 .setHidable(true);
         playerGrid.addColumn(Player::getAge)
@@ -84,7 +84,7 @@ public class GridView implements View, ComponentView
                 .setCaption("Medals");
 
         playerGrid.setFrozenColumnCount(1);
-        playerGrid.setHeightByRows(10d);
+        playerGrid.setHeightByRows(10.0d);
         playerGrid.setWidth("100%");
 
         // filtering by player's name

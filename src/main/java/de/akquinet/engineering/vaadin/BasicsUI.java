@@ -17,18 +17,18 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
-import de.akquinet.engineering.vaadin.buttonbar.ButtonBarView;
-import de.akquinet.engineering.vaadin.databinding.DataBindingView;
+import de.akquinet.engineering.vaadin.exercises.buttonbar.ButtonBarView;
+import de.akquinet.engineering.vaadin.exercises.databinding.DataBindingView;
 import de.akquinet.engineering.vaadin.demos.binding.BindingView;
 import de.akquinet.engineering.vaadin.demos.buffering.BufferingView;
-import de.akquinet.engineering.vaadin.events.EventsView;
-import de.akquinet.engineering.vaadin.face.FaceView;
-import de.akquinet.engineering.vaadin.grid.EditableGridView;
-import de.akquinet.engineering.vaadin.grid.GridView;
-import de.akquinet.engineering.vaadin.layouts.LayoutsView;
-import de.akquinet.engineering.vaadin.ratingstars.RatingStarsView;
-import de.akquinet.engineering.vaadin.resources.ResourcesView;
-import de.akquinet.engineering.vaadin.theming.ThemingView;
+import de.akquinet.engineering.vaadin.exercises.events.EventsView;
+import de.akquinet.engineering.vaadin.exercises.face.FaceView;
+import de.akquinet.engineering.vaadin.exercises.grid.EditableGridView;
+import de.akquinet.engineering.vaadin.exercises.grid.GridView;
+import de.akquinet.engineering.vaadin.exercises.layouts.LayoutsView;
+import de.akquinet.engineering.vaadin.exercises.ratingstars.RatingStarsView;
+import de.akquinet.engineering.vaadin.exercises.resources.ResourcesView;
+import de.akquinet.engineering.vaadin.exercises.theming.ThemingView;
 
 import javax.servlet.annotation.WebServlet;
 import java.util.Locale;
@@ -44,7 +44,7 @@ import java.util.Locale;
 public class BasicsUI extends UI {
 
     @Override
-    protected void init(final VaadinRequest vaadinRequest) {
+    protected void init(final VaadinRequest request) {
         Locale.setDefault(Locale.US);
 
         getPage().setTitle("Vaadin Basics");
@@ -58,7 +58,7 @@ public class BasicsUI extends UI {
         final Panel contentPanel = new Panel();
         contentPanel.setSizeFull();
         rootLayout.addComponent(contentPanel);
-        rootLayout.setExpandRatio(contentPanel, 1f);
+        rootLayout.setExpandRatio(contentPanel, 1.0f);
 
         setNavigator(new Navigator(this, new CustomViewDisplay(contentPanel)));
 
