@@ -37,12 +37,7 @@ $v-focus-color: #A8C324;
 @mixin specialtheme {
   @include valo;
 
-  .v-button-special-custom-style {
-    @include valo-button-style($background-color: #FFCC00);
+  // TODO: create a style class for the custom button
+  // Tip: for the color use the mixin valo-button-style($background-color: <your color>)
 
-    .v-button-wrap .v-button-caption {
-      font-weight: bold;
-      font-style: italic;
-    }
-  }
 }

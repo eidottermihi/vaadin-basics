@@ -8,7 +8,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.themes.ValoTheme;
 
 /**
  * @author Axel Meier, akquinet engineering GmbH
@@ -22,29 +21,27 @@ public class ThemingUI extends UI
         getPage().setTitle("Special Theme");
 
         final Label label = new Label("Styling");
-        label.setStyleName(ValoTheme.LABEL_H1);
-        label.addStyleName(ValoTheme.LABEL_BOLD);
-        label.addStyleName(ValoTheme.LABEL_COLORED);
+        // TODO: make this label an H1 header, bold and colored
 
         final TextField rightAlignedTextField = new TextField("a right-aligned text field");
-        rightAlignedTextField.setStyleName(ValoTheme.TEXTFIELD_ALIGN_RIGHT);
+        // TODO: make this text field's text right aligned
 
         final Button defaultButton = new Button("default button");
 
         final Button primaryButton = new Button("primary button");
-        primaryButton.setStyleName(ValoTheme.BUTTON_PRIMARY);
+        // TODO: make this a primary button
 
         final Button dangerButton = new Button("danger button");
-        dangerButton.setStyleName(ValoTheme.BUTTON_DANGER);
+        // TODO: make this a danger button
 
         final Button friendlyButton = new Button("friendly button");
-        friendlyButton.setStyleName(ValoTheme.BUTTON_FRIENDLY);
+        // TODO: make this a friendly button
 
         final Button linkButton = new Button("link button");
-        linkButton.setStyleName(ValoTheme.BUTTON_LINK);
+        // TODO: style this button like a link
 
         final Button customButton = new Button("custom button");
-        customButton.setStyleName("special-custom-style");
+        // TODO: make this button yellow with a bold and italic font using a custom style
 
         final Button closeButton = new Button("close window", event -> {
             // Close the popup

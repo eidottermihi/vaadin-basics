@@ -2,7 +2,6 @@ package de.akquinet.engineering.vaadin.exercises.buttonbar;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
@@ -33,10 +32,8 @@ public class ButtonBarView implements ComponentView, View
         final Button resetButton = new Button("Reset", event -> alertLabel.setStyleName("noAlert"));
         buttonBar.addComponents(new Label("Alert panel"), yellowButton, redButton, resetButton);
 
-        // layout adjustments
-        buttonBar.setWidth("100%");
-        buttonBar.setExpandRatio(yellowButton, 1.0f);
-        buttonBar.setComponentAlignment(yellowButton, Alignment.TOP_RIGHT);
+        // TODO: let the buttons appear at the right edge of the screen
+        // Tip: use setWidth(), setExpandRatio() and setComponentAlignment()
     }
 
     @Override

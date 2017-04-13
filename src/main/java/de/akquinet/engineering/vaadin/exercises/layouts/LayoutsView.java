@@ -3,7 +3,6 @@ package de.akquinet.engineering.vaadin.exercises.layouts;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
@@ -38,22 +37,13 @@ public class LayoutsView implements ComponentView, View
             contentLayout.addComponent(new Label("Bla, bla, bla, ..."));
         }
 
-        // do the layout
-        header.setWidth("100%");
-        header.setHeight("120px");
-        footer.setWidth("100%");
-        footer.setHeight("120px");
-        navigation.setHeight("100%");
-        navigation.setWidth("250px");
-        content.setSizeFull();
+        // TODO: do the layout
+        // set the header and the footer to 120px height
+        // set the navigation area's width to 250px
+        // Tips:
+        // 1) use sizing functions, setMargin(..), setSpacing(..) and setExpandRatio(..)
+        // 2) remember to add the components to the layout before calling setExpandRatio
 
-        final HorizontalLayout main = new HorizontalLayout(navigation, content);
-        main.setSizeFull();
-        main.setMargin(false);
-        main.setSpacing(false);
-        main.setExpandRatio(content, 1.0f);
-        rootLayout.addComponents(header, main, footer);
-        rootLayout.setExpandRatio(main, 1.0f);
         rootLayout.setSpacing(false);
         rootLayout.setSizeFull();
     }

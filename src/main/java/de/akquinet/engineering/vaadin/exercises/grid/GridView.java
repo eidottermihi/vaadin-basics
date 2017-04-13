@@ -1,24 +1,16 @@
 package de.akquinet.engineering.vaadin.exercises.grid;
 
-import com.vaadin.data.HasValue;
 import com.vaadin.data.provider.DataProvider;
 import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.SerializableComparator;
-import com.vaadin.server.SerializablePredicate;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.StyleGenerator;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.components.grid.HeaderRow;
-import com.vaadin.ui.renderers.HtmlRenderer;
-import com.vaadin.ui.renderers.NumberRenderer;
 import de.akquinet.engineering.vaadin.ComponentView;
 
-import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -43,70 +35,44 @@ public class GridView implements View, ComponentView
                 .ofCollection(playerList);
         playerGrid.setDataProvider(dataProvider);
 
+        // Use this style generator for the points and medals column
         final StyleGenerator<Player> alignRightStyle = player -> "align-right";
 
         // Bonus: show the rank of each player
-        playerGrid.addColumn(player -> playerList.indexOf(player) + 1)
-                .setStyleGenerator(alignRightStyle)
-                .setCaption("Rank");
 
-        // show the player's name
-        final Grid.Column<Player, String> nameColumn = playerGrid
-                .addColumn(Player::getName)
-                .setCaption("Name");
+        // TODO: show the player's name
 
-        // show the player's date of birth
-        playerGrid.addColumn(player -> player.getDateOfBirth().format(dateTimeFormatter))
-                .setCaption("Date of Birth")
-                .setComparator((SerializableComparator<Player>) (o1, o2) -> o1.getDateOfBirth()
-                        .compareTo(o2.getDateOfBirth()))
-                .setWidth(200.0d)
-                .setResizable(false)
-                .setHidable(true);
+        // TODO: show the player's date of birth and make it hidable
+        // Tips:
+        // 1) use the dateTimeFormatter in the ValueProvider
+        // 2) set a comparator (SerializableComparator<Player>) and use the LocalDate's compareTo function,
+        //      so that date are compared not by their string representation but by their values
 
-        // show the player's age
-        playerGrid.addColumn(Player::getAge)
-                .setCaption("Age")
-                .setHidable(true);
+        // TODO: show the player's age and make it hidable
 
         // Bonus: show the player's sex with symbols in different colors
-        playerGrid.addColumn(player -> GenderPresentation
-                .getPresentation(player.getGender()).getIcon().getHtml())
-                .setRenderer(new HtmlRenderer())
-                .setStyleGenerator(player -> GenderPresentation
-                        .getPresentation(player.getGender()).getStyleName())
-                .setComparator((SerializableComparator<Player>) (o1, o2) -> Gender.compare(o1.getGender(), o2.getGender()))
-                .setCaption("Sex").setHidable(true);
+        // Tips:
+        // 1) use the GenderPresentation class to get the gender icons
+        // 2) use an HtmlRenderer
+        // 3) set a style generator and get the style from the GenderPresentation class
+        // 4) set a comparator to make to column comparable, you can use the Gender's compare function
 
-        // show the player's points
-        playerGrid
-                .addColumn(Player::getPoints)
-                .setRenderer(new NumberRenderer(new DecimalFormat()))
-                .setStyleGenerator(alignRightStyle)
-                .setCaption("Points");
-        // show the player's medals
-        playerGrid
-                .addColumn(Player::getMedals)
-                .setStyleGenerator(alignRightStyle)
-                .setCaption("Medals");
+        // TODO: show the player's points (align right)
+        // Tip: you can use the NumberRenderer (new NumberRenderer(new DecimalFormat())) to get the points formatted
 
-        // filtering by player's name
-        {
-            final HeaderRow filterRow = playerGrid.appendHeaderRow();
-            final TextField nameFilterTextField = new TextField();
-            nameFilterTextField.setPlaceholder("Filter");
-            filterRow.getCell(nameColumn).setComponent(nameFilterTextField);
-            nameFilterTextField.addValueChangeListener((HasValue.ValueChangeListener<String>) event ->
-                    dataProvider.setFilter(Player::getName,
-                            (SerializablePredicate<String>) s -> s
-                                    .toLowerCase(UI.getCurrent().getLocale())
-                                    .contains(event.getValue()
-                                            .toLowerCase(UI.getCurrent().getLocale())))
-            );
-        }
+        // TODO: show the player's medals (align right)
+
+        // TODO: enable filtering by player's name
+        // Tips:
+        // 1) create a new header row with appendHeaderRow()
+        // 2) create a text field and set this component into the new row in the cell of the name
+        // 3) add a value change listener to the text field
+        // 4) in the listener set a filter on the dataProvider, use this interface:
+        //      setFilter(ValueProvider<T, V> valueProvider, SerializablePredicate<V> valueFilter)
+        //    and check whether or not the cell contains the filter string
 
         // layout grid
-        playerGrid.setFrozenColumnCount(1);
+        // TODO: set the grid's frozen column count to 1
         playerGrid.setHeightByRows(10.0d);
         playerGrid.setWidth("100%");
 

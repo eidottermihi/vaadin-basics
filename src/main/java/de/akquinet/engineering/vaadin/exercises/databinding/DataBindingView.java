@@ -1,12 +1,7 @@
 package de.akquinet.engineering.vaadin.exercises.databinding;
 
-import com.vaadin.data.Binder;
-import com.vaadin.data.ValidationException;
-import com.vaadin.data.ValueProvider;
-import com.vaadin.data.converter.StringToIntegerConverter;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.Setter;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
@@ -24,7 +19,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 /**
  * @author Axel Meier, akquinet engineering GmbH
@@ -65,36 +59,28 @@ public class DataBindingView implements View, ComponentView
         localeSelect.setItemCaptionGenerator(locale -> locale
                 .getDisplayLanguage(UI.getCurrent().getLocale()));
 
-        // do the binding
-        final Binder<Movie> binder = new Binder<>();
-        binder.forField(titleField)
-                .asRequired("The movie must have a title")
-                .bind(Movie::getTitle, Movie::setTitle);
-        binder.forField(durationField)
-                .withConverter(new StringToIntegerConverter("This is not a number"))
-                .withValidator(duration -> duration > 0, "The duration must be greater zero")
-                .bind(Movie::getDurationInMinutes, Movie::setDurationInMinutes);
-        binder.bind(genreSelect, Movie::getGenre, Movie::setGenre);
-        binder.bind(localeSelect, (ValueProvider<Movie, Set<Locale>>) Movie::getLocales,
-                    (Setter<Movie, Set<Locale>>) Movie::setLocales);
+        // TODO: bind the movie object to the fields using a binder
+        // Tips:
+        // 1) create an instance of the Binder class
+        // 2) use forField(..) and bind(..) to bind each field to the getters and setters
+        // 3) the durationField need a StringToIntegerConverter
+        // 4) set the object's values with binder.readBean(..)
 
-        binder.readBean(movie);
+        // Bonus:
+        // 1) set the titleField to be required
+        // 2) add validation to the durationField to check that the duration is greater zero
 
         final FormLayout formLayout = new FormLayout(titleField, durationField, genreSelect, localeSelect);
 
         final Button saveButton = new Button("save", event ->
         {
-            try
-            {
-                binder.writeBean(movie);
-            }
-            catch (final ValidationException e)
-            {
-                e.printStackTrace();
-            }
+            // TODO: implement a save button click listener that uses binder.writeBean(..) to write the field's values into the bean
         });
         saveButton.setStyleName(ValoTheme.BUTTON_PRIMARY);
-        final Button cancelButton = new Button("cancel", event -> binder.readBean(movie));
+
+        final Button cancelButton = new Button("cancel", event -> {
+            // TODO: read the Movie object's value and write them back to the fields with binder.readBean(..)
+        });
 
         final HorizontalLayout buttonLayout = new HorizontalLayout(cancelButton, saveButton);
 

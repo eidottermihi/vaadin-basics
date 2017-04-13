@@ -5,11 +5,9 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 import de.akquinet.engineering.vaadin.ComponentView;
-import org.vaadin.teemu.ratingstars.RatingStars;
 
 /**
  * @author Axel Meier, akquinet engineering GmbH
@@ -25,25 +23,21 @@ public class RatingStarsView implements View, ComponentView
         final Label title = new Label("Please rate this course");
         title.addStyleName(ValoTheme.LABEL_H2);
 
-        final RatingStars ratingStars = new RatingStars();
-        ratingStars.setValueCaption(1, "sh**!!!");
-        ratingStars.setValueCaption(2, "poor");
-        ratingStars.setValueCaption(3, "average");
-        ratingStars.setValueCaption(4, "good");
-        ratingStars.setValueCaption(5, "akquitastic!");
+        // TODO: after adding the maven dependency show the RatingStars add-on
+        // Tips:
+        // 1) create an instance of the RatingStars class
+        // 2) use setValueCaption(<number 1..5>, <description>) to configure the stars and their descriptions
 
         final Button submitButton = new Button("submit", event -> {
-            if (ratingStars.getValue() > 3.5){
-                Notification.show("Thank you!");
-            }
-            else {
-                Notification.show("Invalid rating, please try again!", Notification.Type.ERROR_MESSAGE);
-            }
+            // TODO: show a notification
         });
         submitButton.setEnabled(false);
-        ratingStars.addValueChangeListener(event -> submitButton.setEnabled(true));
 
-        rootLayout.addComponents(title, ratingStars, submitButton);
+        // TODO: enable the submit button, when the rating is selected
+
+        // TODO: add the rating stars to the layout
+
+        rootLayout.addComponents(title, submitButton);
     }
 
     @Override

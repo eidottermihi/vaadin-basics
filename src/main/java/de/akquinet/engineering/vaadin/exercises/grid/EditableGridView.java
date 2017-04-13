@@ -1,15 +1,9 @@
 package de.akquinet.engineering.vaadin.exercises.grid;
 
-import com.vaadin.data.Binder;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.DateField;
 import com.vaadin.ui.Grid;
-import com.vaadin.ui.IconGenerator;
-import com.vaadin.ui.ItemCaptionGenerator;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.renderers.HtmlRenderer;
 import de.akquinet.engineering.vaadin.ComponentView;
@@ -34,49 +28,49 @@ public class EditableGridView implements View, ComponentView
 
         grid.setColumns("name", "dateOfBirth");
 
-        final Binder<Player> binder = grid.getEditor().getBinder();
-
-        final TextField nameField = new TextField();
-        binder.forField(nameField)
-                .asRequired("name is mandatory")
-                .bind("name");
-        grid.getColumn("name").setEditorComponent(nameField);
-
-        final DateField dateField = new DateField();
-        dateField.setDateFormat("yyyy-MM-dd");
-        binder.bind(dateField, "dateOfBirth");
-        grid.getColumn("dateOfBirth").setEditorComponent(dateField);
-
         final Grid.Column<Player, String> genderColumn = grid
-                .addColumn(player ->
-                {
-                    final GenderPresentation genderPresentation = GenderPresentation
-                            .getPresentation(player.getGender());
-                    return String.format("%s %s",
-                                         genderPresentation
-                                                 .getIcon().getHtml(),
-                                         genderPresentation.getName());
-                })
+                .addColumn(EditableGridView::getGenderColumnHtmlContent)
                 .setRenderer(new HtmlRenderer())
                 .setCaption("Sex");
 
-        final ComboBox<Gender> genderComboBox = new ComboBox<>();
-        genderComboBox.setItems(Gender.values());
-        genderComboBox.setItemIconGenerator((IconGenerator<Gender>) gender -> GenderPresentation
-                .getPresentation(gender).getIcon());
-        genderComboBox
-                .setItemCaptionGenerator((ItemCaptionGenerator<Gender>) gender -> GenderPresentation
-                        .getPresentation(gender).getName());
-        genderComboBox.setEmptySelectionAllowed(false);
-        final Binder.Binding<Player, Gender> genderBinding = binder
-                .bind(genderComboBox, Player::getGender, Player::setGender);
-        genderColumn.setEditorBinding(genderBinding);
+        // TODO: make the grid rows editable
+        // Tip: get the binder for the row's Player object with grid.getEditor().getBinder();
 
-        grid.getEditor().setEnabled(true);
+        // TODO: make the name column editable
+        // Tips:
+        // 1) create a text field for the name column and bind it with bind("name")
+        // 2) make the text field required with asRequired(..)
+        // 3) connect the name column with the text field using setEditorComponent
+
+        // TODO: make the date column editable
+        // Tip: set the date format of the date field to "yyyy-MM-dd"
+
+        // TODO: make the gender column editable
+        // Tips:
+        // 1) create an instance of ComboBox<Gender>
+        // 2) set the available gender items (Gender.values())
+        // 3) set the ItemIconGenerator using the icon from the GenderPresentation class
+        // 4) set the ItemCaptionGenerator and use the GenderPresentation class to get the gender name
+        // 5) disable the empty selection with setEmptySelectionAllowed(..)
+        // 6) bind the the combo box with the binder to the Player's gender getter and setter
+        // 7) set the column's editor binding
+
+        // TODO: make the grid editable
+        // Tip: use setEnabled(..) on the grid's editor
 
         grid.setSizeFull();
         rootLayout.setSizeFull();
         rootLayout.addComponent(grid);
+    }
+
+    private static String getGenderColumnHtmlContent(final Player player)
+    {
+        final GenderPresentation genderPresentation = GenderPresentation
+                .getPresentation(player.getGender());
+        return String.format("%s %s",
+                             genderPresentation
+                                     .getIcon().getHtml(),
+                             genderPresentation.getName());
     }
 
     @Override
