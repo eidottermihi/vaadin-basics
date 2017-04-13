@@ -63,9 +63,9 @@ public class BasicsUI extends UI {
         setNavigator(new Navigator(this, new CustomViewDisplay(contentPanel)));
 
         getNavigator().addView(EventsView.VIEW_NAME, new EventsView());
+        getNavigator().addView(ButtonBarView.VIEW_NAME, new ButtonBarView());
         getNavigator().addView(LayoutsView.VIEW_NAME, new LayoutsView());
         getNavigator().addView(FaceView.VIEW_NAME, new FaceView());
-        getNavigator().addView(ButtonBarView.VIEW_NAME, new ButtonBarView());
         getNavigator().addView(DataBindingView.VIEW_NAME, new DataBindingView());
         getNavigator().addView(GridView.VIEW_NAME, new GridView());
         getNavigator().addView(EditableGridView.VIEW_NAME, new EditableGridView());
@@ -93,9 +93,9 @@ public class BasicsUI extends UI {
         exercisesLabel.setStyleName(ValoTheme.LABEL_H3);
         navigationLayout.addComponent(exercisesLabel);
         navigationLayout.addComponent(createNavigationButton("Events and Listeners", EventsView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Button Bar", ButtonBarView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Layouts", LayoutsView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("More Layouts", FaceView.VIEW_NAME));
-        navigationLayout.addComponent(createNavigationButton("Button Bar", ButtonBarView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Data Binding", DataBindingView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Grid", GridView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Editable Grid", EditableGridView.VIEW_NAME));
