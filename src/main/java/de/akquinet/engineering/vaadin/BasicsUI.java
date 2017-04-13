@@ -72,8 +72,8 @@ public class BasicsUI extends UI {
         getNavigator().addView(ThemingView.VIEW_NAME, new ThemingView());
         getNavigator().addView(ResourcesView.VIEW_NAME, new ResourcesView());
         getNavigator().addView(RatingStarsView.VIEW_NAME, new RatingStarsView());
-        getNavigator().addView(BufferingView.VIEW_NAME, new BufferingView());
         getNavigator().addView(BindingView.VIEW_NAME, new BindingView());
+        getNavigator().addView(BufferingView.VIEW_NAME, new BufferingView());
 
         setContent(rootLayout);
     }
@@ -107,8 +107,8 @@ public class BasicsUI extends UI {
         demoLabel.setStyleName(ValoTheme.LABEL_H3);
         navigationLayout.addComponent(demoLabel);
 
-        navigationLayout.addComponent(createNavigationButton("Buffering", BufferingView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Binding", BindingView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Buffering", BufferingView.VIEW_NAME));
 
         final Panel navigationPanel = new Panel(navigationLayout);
         navigationPanel.setStyleName(ValoTheme.PANEL_BORDERLESS);
