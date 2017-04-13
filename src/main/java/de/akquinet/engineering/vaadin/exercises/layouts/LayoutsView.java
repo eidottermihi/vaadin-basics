@@ -21,24 +21,31 @@ public class LayoutsView implements ComponentView, View
     public LayoutsView()
     {
         final Label header = new Label("This is the header");
-        header.setWidth("100%");
         header.setStyleName("header");
-        header.setHeight("120px");
+
         final Label footer = new Label("This is the footer");
-        footer.setWidth("100%");
         footer.setStyleName("footer");
-        footer.setHeight("120px");
+
         final Label navigation = new Label("This is the navigation area");
         navigation.setStyleName("navigation");
-        navigation.setHeight("100%");
-        navigation.setWidth("250px");
+
         final Panel content = new Panel();
-        content.setSizeFull();
+
+        // fill the content
         final VerticalLayout contentLayout = new VerticalLayout();
         content.setContent(contentLayout);
         for (int i=0; i<50; ++i){
             contentLayout.addComponent(new Label("Bla, bla, bla, ..."));
         }
+
+        // do the layout
+        header.setWidth("100%");
+        header.setHeight("120px");
+        footer.setWidth("100%");
+        footer.setHeight("120px");
+        navigation.setHeight("100%");
+        navigation.setWidth("250px");
+        content.setSizeFull();
 
         final HorizontalLayout main = new HorizontalLayout(navigation, content);
         main.setSizeFull();

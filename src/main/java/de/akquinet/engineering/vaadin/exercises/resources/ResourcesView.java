@@ -34,7 +34,6 @@ public class ResourcesView implements View, ComponentView
 
     public ResourcesView()
     {
-
         final Label title = new Label("Uploading a Resource");
         title.setStyleName(ValoTheme.LABEL_H2);
 
@@ -47,8 +46,10 @@ public class ResourcesView implements View, ComponentView
 
         final Upload upload = new Upload();
         upload.setCaption("Upload image file");
+        upload.setButtonCaption("upload");
+
         upload.setReceiver(
-                (Upload.Receiver) (filename, mimeType) ->
+                (filename, mimeType) ->
                 {
                     try
                     {
@@ -83,12 +84,21 @@ public class ResourcesView implements View, ComponentView
                     }
                     return null;
                 });
-        upload.setButtonCaption("upload");
+
         upload.addSucceededListener(event ->
                 image.setSource(new FileResource(file))
         );
-        upload.addFailedListener(event -> Notification.show("Upload failed!", Notification.Type.ERROR_MESSAGE));
-        upload.addProgressListener((Upload.ProgressListener) (readBytes, contentLength) ->
+
+        upload.addFailedListener(event ->
+                Notification.show("Upload failed!", Notification.Type.ERROR_MESSAGE));
+
+        upload.addStartedListener(event ->
+        {
+            progressBar.setValue(0.0f);
+            progressBar.setVisible(true);
+        });
+
+        upload.addProgressListener((readBytes, contentLength) ->
         {
             if (contentLength < 0)
             {
@@ -100,12 +110,9 @@ public class ResourcesView implements View, ComponentView
                 progressBar.setValue((float) readBytes / contentLength);
             }
         });
-        upload.addStartedListener(event ->
-        {
-            progressBar.setValue(0.0f);
-            progressBar.setVisible(true);
-        });
-        upload.addFinishedListener(event -> progressBar.setVisible(false));
+
+        upload.addFinishedListener(event ->
+                progressBar.setVisible(false));
 
         rootLayout.addComponents(title, upload, image, progressBar);
     }

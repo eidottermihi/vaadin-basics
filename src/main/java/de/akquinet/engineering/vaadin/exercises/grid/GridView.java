@@ -50,9 +50,12 @@ public class GridView implements View, ComponentView
                 .setStyleGenerator(alignRightStyle)
                 .setCaption("Rank");
 
+        // show the player's name
         final Grid.Column<Player, String> nameColumn = playerGrid
                 .addColumn(Player::getName)
                 .setCaption("Name");
+
+        // show the player's date of birth
         playerGrid.addColumn(player -> player.getDateOfBirth().format(dateTimeFormatter))
                 .setCaption("Date of Birth")
                 .setComparator((SerializableComparator<Player>) (o1, o2) -> o1.getDateOfBirth()
@@ -60,6 +63,8 @@ public class GridView implements View, ComponentView
                 .setWidth(200.0d)
                 .setResizable(false)
                 .setHidable(true);
+
+        // show the player's age
         playerGrid.addColumn(Player::getAge)
                 .setCaption("Age")
                 .setHidable(true);
@@ -73,19 +78,17 @@ public class GridView implements View, ComponentView
                 .setComparator((SerializableComparator<Player>) (o1, o2) -> Gender.compare(o1.getGender(), o2.getGender()))
                 .setCaption("Sex").setHidable(true);
 
+        // show the player's points
         playerGrid
                 .addColumn(Player::getPoints)
                 .setRenderer(new NumberRenderer(new DecimalFormat()))
                 .setStyleGenerator(alignRightStyle)
                 .setCaption("Points");
+        // show the player's medals
         playerGrid
                 .addColumn(Player::getMedals)
                 .setStyleGenerator(alignRightStyle)
                 .setCaption("Medals");
-
-        playerGrid.setFrozenColumnCount(1);
-        playerGrid.setHeightByRows(10.0d);
-        playerGrid.setWidth("100%");
 
         // filtering by player's name
         {
@@ -101,6 +104,11 @@ public class GridView implements View, ComponentView
                                             .toLowerCase(UI.getCurrent().getLocale())))
             );
         }
+
+        // layout grid
+        playerGrid.setFrozenColumnCount(1);
+        playerGrid.setHeightByRows(10.0d);
+        playerGrid.setWidth("100%");
 
         rootLayout.addComponent(playerGrid);
     }

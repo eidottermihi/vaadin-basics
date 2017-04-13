@@ -21,7 +21,6 @@ public class ButtonBarView implements ComponentView, View
 
     public ButtonBarView(){
         final HorizontalLayout buttonBar = new HorizontalLayout();
-        buttonBar.setWidth("100%");
 
         final Label alertLabel = new Label();
         alertLabel.setWidth("100%");
@@ -33,6 +32,9 @@ public class ButtonBarView implements ComponentView, View
         final Button redButton = new Button("Red", event -> alertLabel.setStyleName("redAlert"));
         final Button resetButton = new Button("Reset", event -> alertLabel.setStyleName("noAlert"));
         buttonBar.addComponents(new Label("Alert panel"), yellowButton, redButton, resetButton);
+
+        // layout adjustments
+        buttonBar.setWidth("100%");
         buttonBar.setExpandRatio(yellowButton, 1.0f);
         buttonBar.setComponentAlignment(yellowButton, Alignment.TOP_RIGHT);
     }

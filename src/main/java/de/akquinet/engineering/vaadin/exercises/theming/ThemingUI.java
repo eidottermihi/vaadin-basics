@@ -30,12 +30,16 @@ public class ThemingUI extends UI
         rightAlignedTextField.setStyleName(ValoTheme.TEXTFIELD_ALIGN_RIGHT);
 
         final Button defaultButton = new Button("default button");
+
         final Button primaryButton = new Button("primary button");
         primaryButton.setStyleName(ValoTheme.BUTTON_PRIMARY);
+
         final Button dangerButton = new Button("danger button");
         dangerButton.setStyleName(ValoTheme.BUTTON_DANGER);
+
         final Button friendlyButton = new Button("friendly button");
         friendlyButton.setStyleName(ValoTheme.BUTTON_FRIENDLY);
+
         final Button linkButton = new Button("link button");
         linkButton.setStyleName(ValoTheme.BUTTON_LINK);
 

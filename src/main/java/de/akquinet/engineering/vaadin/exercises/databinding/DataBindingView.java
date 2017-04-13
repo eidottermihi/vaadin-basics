@@ -53,6 +53,7 @@ public class DataBindingView implements View, ComponentView
                 .asList(Locale.GERMANY, Locale.US)),
                 new Genre("fiction", "drama"));
 
+        // create the fields
         final TextField titleField = new TextField("Title");
         final TextField durationField = new TextField("Duration");
         final ComboBox<Genre> genreSelect = new ComboBox<>("Genre");
@@ -64,6 +65,7 @@ public class DataBindingView implements View, ComponentView
         localeSelect.setItemCaptionGenerator(locale -> locale
                 .getDisplayLanguage(UI.getCurrent().getLocale()));
 
+        // do the binding
         final Binder<Movie> binder = new Binder<>();
         binder.forField(titleField)
                 .asRequired("The movie must have a title")

@@ -41,6 +41,7 @@ public class EventsView implements ComponentView, View
                 .show("Hello " + nameField.getValue() + "!"));
         rootLayout.addComponents(nameField, nameLabel, showNotificationButton);
 
+        // bonus: show the seconds on page by counting the timer event that occurs every second
         final String counterLabelText = "seconds on page: ";
         final Label counterLabel = new Label(counterLabelText + secondsOnPage);
         timerExtension = TimerExtension.create(counterLabel);

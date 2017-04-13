@@ -26,31 +26,39 @@ public class FaceView implements ComponentView, View
         final Button leftEyeButton = new Button(VaadinIcons.EYE);
         leftEyeButton.setStyleName(ValoTheme.BUTTON_LINK);
         leftEyeButton.addStyleName("eye");
+        leftEyeButton.setDescription("left eye");
+
         final Button rightEyeButton = new Button(VaadinIcons.EYE);
         rightEyeButton.setStyleName(ValoTheme.BUTTON_LINK);
         rightEyeButton.addStyleName("eye");
+        rightEyeButton.setDescription("right eye");
 
         final HorizontalLayout horizontalLayout = new HorizontalLayout(leftEyeButton, rightEyeButton);
-        horizontalLayout.setComponentAlignment(leftEyeButton, Alignment.MIDDLE_CENTER);
-        horizontalLayout.setComponentAlignment(rightEyeButton, Alignment.MIDDLE_CENTER);
-        horizontalLayout.setWidth("100%");
 
         final Button noseButton = new Button(VaadinIcons.CARET_UP);
         noseButton.setStyleName(ValoTheme.BUTTON_LINK);
         noseButton.addStyleName("nose");
+        noseButton.setDescription("nose");
 
-        final TextField teethField = new TextField();
-        teethField.setWidth("200px");
-        teethField.setValue("|||||||||||||||||||||");
+        final TextField mouthField = new TextField();
+        mouthField.setWidth("200px");
+        mouthField.setValue("|||||||||||||||||||||");
+        mouthField.setDescription("mouth");
 
         final VerticalLayout faceLayout = new VerticalLayout();
-        faceLayout.addComponents(horizontalLayout, noseButton, teethField);
+        faceLayout.setStyleName("face");
+        faceLayout.addComponents(horizontalLayout, noseButton, mouthField);
+
+        // layout adjustments
+        horizontalLayout.setComponentAlignment(leftEyeButton, Alignment.MIDDLE_CENTER);
+        horizontalLayout.setComponentAlignment(rightEyeButton, Alignment.MIDDLE_CENTER);
+        horizontalLayout.setWidth("100%");
+
         faceLayout.setComponentAlignment(horizontalLayout, Alignment.MIDDLE_CENTER);
         faceLayout.setComponentAlignment(noseButton, Alignment.MIDDLE_CENTER);
         faceLayout.setExpandRatio(noseButton, 1.0f);
-        faceLayout.setComponentAlignment(teethField, Alignment.MIDDLE_CENTER);
+        faceLayout.setComponentAlignment(mouthField, Alignment.MIDDLE_CENTER);
         faceLayout.setSizeFull();
-        faceLayout.setStyleName("face");
         faceLayout.setWidth("350px");
         faceLayout.setHeight("400px");
 
