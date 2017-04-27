@@ -121,7 +121,6 @@ public final class PlayerGenerator
             playerList.add(createPlayer());
         }
         playerList.sort(Comparator.comparing(Player::getPoints)
-                .reversed()
                 .thenComparing(Player::getMedals)
                 .reversed());
         return playerList;

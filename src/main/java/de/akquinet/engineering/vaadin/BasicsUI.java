@@ -45,7 +45,7 @@ public class BasicsUI extends UI {
 
     @Override
     protected void init(final VaadinRequest request) {
-        Locale.setDefault(Locale.US);
+        setLocale(Locale.US);
 
         getPage().setTitle("Vaadin Basics");
 
