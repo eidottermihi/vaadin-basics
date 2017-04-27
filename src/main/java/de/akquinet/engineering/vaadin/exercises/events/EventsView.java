@@ -31,7 +31,7 @@ public class EventsView implements ComponentView, View
         final TextField nameField = new TextField("Name");
         // TODO: add a value change listener to the nameField to update the label's value with the entered name
 
-        // BLUR gives the old Vaadin 7 behavior, now LAZY is default.
+        // BLUR gives the old Vaadin 7 behavior, LAZY is default.
         nameField.setValueChangeMode(ValueChangeMode.BLUR);
 
         // TODO: add a button to show the name in a notification
