@@ -33,7 +33,7 @@ public class EventsView implements ComponentView, View
         nameField.addValueChangeListener(e -> nameLabel
                 .setValue("You are " + nameField.getValue() + "."));
 
-        // BLUR gives the old Vaadin 7 behavior, now LAZY is default.
+        // BLUR gives the old Vaadin 7 behavior, LAZY is default.
         nameField.setValueChangeMode(ValueChangeMode.BLUR);
 
         final Button showNotificationButton = new Button("Say Hello");

@@ -37,7 +37,7 @@ public class BindingView implements View, ComponentView
         final Binder<Label> binder = new Binder<>();
         binder.forField(slider)
                 .withConverter(
-                               doubleToString -> Integer.toString((int) (double) doubleToString),
+                               doubleToString -> Integer.toString(doubleToString.intValue()),
                                Double::parseDouble)
                 .bind(Label::getValue,
                       (Setter<Label, String>) (label, s) ->
