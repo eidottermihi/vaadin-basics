@@ -18,7 +18,7 @@ import com.vaadin.ui.renderers.HtmlRenderer;
 import com.vaadin.ui.renderers.NumberRenderer;
 import de.akquinet.engineering.vaadin.ComponentView;
 
-import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -81,7 +81,7 @@ public class GridView implements View, ComponentView
         // show the player's points
         playerGrid
                 .addColumn(Player::getPoints)
-                .setRenderer(new NumberRenderer(new DecimalFormat()))
+                .setRenderer(new NumberRenderer(NumberFormat.getNumberInstance(UI.getCurrent().getLocale())))
                 .setStyleGenerator(alignRightStyle)
                 .setCaption("Points");
         // show the player's medals
