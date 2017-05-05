@@ -18,12 +18,13 @@ import de.akquinet.engineering.vaadin.timerextension.TimerExtension;
 public class EventsView implements ComponentView, View
 {
     // the start view needs to have the empty string as view name
-    public static final String VIEW_NAME = "";
+    public static final String VIEW_NAME = "events";
 
     private final VerticalLayout rootLayout = new VerticalLayout();
 
     private int secondsOnPage = 0;
     private TimerExtension timerExtension = null;
+    private final Label counterLabel;
 
     public EventsView()
     {
@@ -43,7 +44,7 @@ public class EventsView implements ComponentView, View
 
         // bonus: show the seconds on page by counting the timer event that occurs every second
         final String counterLabelText = "seconds on page: ";
-        final Label counterLabel = new Label(counterLabelText + secondsOnPage);
+        counterLabel = new Label(counterLabelText + secondsOnPage);
         timerExtension = TimerExtension.create(counterLabel);
         timerExtension.setIntervalInMs(1000);
         timerExtension.addTimerListener(e -> counterLabel.setValue(counterLabelText + ++secondsOnPage));
@@ -59,6 +60,13 @@ public class EventsView implements ComponentView, View
     @Override
     public void enter(final ViewChangeListener.ViewChangeEvent event)
     {
-        timerExtension.start();
+        final String params = event.getParameters();
+        if (params.equalsIgnoreCase("startTimer")){
+            timerExtension.start();
+            counterLabel.setVisible(true);
+        }
+        else {
+            counterLabel.setVisible(false);
+        }
     }
 }

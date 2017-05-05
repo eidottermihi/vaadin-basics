@@ -21,6 +21,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
+        <slf4j.version>1.7.25</slf4j.version>
+
         <!-- If there are no local customisations, this can also be "fetch" or "cdn" -->
         <!-- enable this for widgetset compilation -->
         <vaadin.widgetset.mode>local</vaadin.widgetset.mode>
@@ -80,6 +82,22 @@
             <groupId>org.vaadin.addons</groupId>
             <artifactId>ratingstars</artifactId>
             <version>3.0-beta3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 

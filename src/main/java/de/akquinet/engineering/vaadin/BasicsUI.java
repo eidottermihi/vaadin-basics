@@ -17,10 +17,10 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
-import de.akquinet.engineering.vaadin.exercises.buttonbar.ButtonBarView;
-import de.akquinet.engineering.vaadin.exercises.databinding.DataBindingView;
 import de.akquinet.engineering.vaadin.demos.binding.BindingView;
 import de.akquinet.engineering.vaadin.demos.buffering.BufferingView;
+import de.akquinet.engineering.vaadin.exercises.buttonbar.ButtonBarView;
+import de.akquinet.engineering.vaadin.exercises.databinding.DataBindingView;
 import de.akquinet.engineering.vaadin.exercises.events.EventsView;
 import de.akquinet.engineering.vaadin.exercises.face.FaceView;
 import de.akquinet.engineering.vaadin.exercises.grid.EditableGridView;
@@ -60,9 +60,10 @@ public class BasicsUI extends UI {
         rootLayout.addComponent(contentPanel);
         rootLayout.setExpandRatio(contentPanel, 1.0f);
 
-        setNavigator(new Navigator(this, new CustomViewDisplay(contentPanel)));
+        setNavigator(new Navigator(this, new HistoryApiNavigationStateManager(getPage()), new CustomViewDisplay(contentPanel)));
 
-        getNavigator().addView(EventsView.VIEW_NAME, new EventsView());
+        final EventsView homeView = new EventsView();
+        getNavigator().addView(EventsView.VIEW_NAME, homeView);
         getNavigator().addView(ButtonBarView.VIEW_NAME, new ButtonBarView());
         getNavigator().addView(LayoutsView.VIEW_NAME, new LayoutsView());
         getNavigator().addView(FaceView.VIEW_NAME, new FaceView());
@@ -74,6 +75,7 @@ public class BasicsUI extends UI {
         getNavigator().addView(RatingStarsView.VIEW_NAME, new RatingStarsView());
         getNavigator().addView(BindingView.VIEW_NAME, new BindingView());
         getNavigator().addView(BufferingView.VIEW_NAME, new BufferingView());
+        getNavigator().setErrorView(homeView);
 
         setContent(rootLayout);
     }
@@ -92,7 +94,7 @@ public class BasicsUI extends UI {
         final Label exercisesLabel = new Label("Exercises");
         exercisesLabel.setStyleName(ValoTheme.LABEL_H3);
         navigationLayout.addComponent(exercisesLabel);
-        navigationLayout.addComponent(createNavigationButton("Events and Listeners", EventsView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Events and Listeners", EventsView.VIEW_NAME + "/startTimer"));
         navigationLayout.addComponent(createNavigationButton("Button Bar", ButtonBarView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Layouts", LayoutsView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("More Layouts", FaceView.VIEW_NAME));
