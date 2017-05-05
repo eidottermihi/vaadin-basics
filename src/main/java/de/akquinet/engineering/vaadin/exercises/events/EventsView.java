@@ -17,7 +17,6 @@ import de.akquinet.engineering.vaadin.timerextension.TimerExtension;
  */
 public class EventsView implements ComponentView, View
 {
-    // the start view needs to have the empty string as view name
     public static final String VIEW_NAME = "events";
 
     private final VerticalLayout rootLayout = new VerticalLayout();

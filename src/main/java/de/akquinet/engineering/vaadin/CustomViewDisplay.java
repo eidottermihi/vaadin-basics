@@ -28,7 +28,7 @@ public class CustomViewDisplay implements ViewDisplay
         }
         else
         {
-            throw new IllegalArgumentException("View is not a de.akquinet.engineering.notebook.ui.View): "
+            throw new IllegalArgumentException("View is not a de.akquinet.engineering.notebook.ui.View: "
                     + view);
         }
     }
