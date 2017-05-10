@@ -17,7 +17,7 @@ import de.akquinet.engineering.vaadin.timerextension.TimerExtension;
  */
 public class EventsView implements ComponentView, View
 {
-    public static final String VIEW_NAME = "events";
+    public static final String VIEW_NAME = "";
 
     private final VerticalLayout rootLayout = new VerticalLayout();
 

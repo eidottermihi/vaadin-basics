@@ -4,6 +4,7 @@ import com.vaadin.navigator.NavigationStateManager;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.Page;
 import com.vaadin.shared.Registration;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * A {@link NavigationStateManager} using the HTML5 history API to track views and enable listening to view changes.
@@ -38,7 +39,8 @@ public class HistoryApiNavigationStateManager implements NavigationStateManager
     @Override
     public void setState(final String state)
     {
-        page.pushState("/" + (state != null ? state : ""));
+        final String newState = StringUtils.defaultString(state);
+        page.pushState(newState.startsWith("/") ? newState : "/" + newState);
     }
 
     @Override

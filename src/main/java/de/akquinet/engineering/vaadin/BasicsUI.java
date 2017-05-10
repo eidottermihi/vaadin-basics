@@ -62,8 +62,7 @@ public class BasicsUI extends UI {
 
         setNavigator(new Navigator(this, new HistoryApiNavigationStateManager(getPage()), new CustomViewDisplay(contentPanel)));
 
-        final EventsView homeView = new EventsView();
-        getNavigator().addView(EventsView.VIEW_NAME, homeView);
+        getNavigator().addView(EventsView.VIEW_NAME, new EventsView());
         getNavigator().addView(ButtonBarView.VIEW_NAME, new ButtonBarView());
         getNavigator().addView(LayoutsView.VIEW_NAME, new LayoutsView());
         getNavigator().addView(FaceView.VIEW_NAME, new FaceView());
@@ -75,7 +74,6 @@ public class BasicsUI extends UI {
         getNavigator().addView(RatingStarsView.VIEW_NAME, new RatingStarsView());
         getNavigator().addView(BindingView.VIEW_NAME, new BindingView());
         getNavigator().addView(BufferingView.VIEW_NAME, new BufferingView());
-        getNavigator().setErrorView(homeView);
 
         setContent(rootLayout);
     }
@@ -94,7 +92,8 @@ public class BasicsUI extends UI {
         final Label exercisesLabel = new Label("Exercises");
         exercisesLabel.setStyleName(ValoTheme.LABEL_H3);
         navigationLayout.addComponent(exercisesLabel);
-        navigationLayout.addComponent(createNavigationButton("Events and Listeners", EventsView.VIEW_NAME + "/startTimer"));
+        navigationLayout.addComponent(createNavigationButton("Events and Listeners", EventsView.VIEW_NAME));
+        navigationLayout.addComponent(createNavigationButton("Events and Timer", EventsView.VIEW_NAME + "/startTimer"));
         navigationLayout.addComponent(createNavigationButton("Button Bar", ButtonBarView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("Layouts", LayoutsView.VIEW_NAME));
         navigationLayout.addComponent(createNavigationButton("More Layouts", FaceView.VIEW_NAME));
