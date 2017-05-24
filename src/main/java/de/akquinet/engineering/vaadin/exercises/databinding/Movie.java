@@ -5,14 +5,26 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * @author Axel Meier, akquinet engineering GmbH
  */
 public class Movie
 {
+	@Size(min = 1, max = 20, message = "Title must be between 1 - 20 characters.")
     private String title;
+	
+	@NotNull
+	@Min(value = 1, message = "Duration must be a positive number.")
     private int durationInMinutes;
+	
+	@Min(value = 1, message = "You need to choose at least one language.")
     private Set<Locale> locales;
+	
+	@NotNull(message = "You need to choose a genre.")
     private Genre genre;
 
     public Movie(){}

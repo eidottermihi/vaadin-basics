@@ -3,6 +3,7 @@ package de.akquinet.engineering.vaadin.exercises.face;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
@@ -26,13 +27,18 @@ public class FaceView implements ComponentView, View
         leftEyeButton.setStyleName(ValoTheme.BUTTON_LINK);
         leftEyeButton.addStyleName("eye");
         leftEyeButton.setDescription("left eye");
-
+        leftEyeButton.setWidth("100%");
+        
         final Button rightEyeButton = new Button(VaadinIcons.EYE);
         rightEyeButton.setStyleName(ValoTheme.BUTTON_LINK);
         rightEyeButton.addStyleName("eye");
         rightEyeButton.setDescription("right eye");
-
+        rightEyeButton.setWidth("100%");
+        
         final HorizontalLayout horizontalLayout = new HorizontalLayout(leftEyeButton, rightEyeButton);
+        horizontalLayout.setExpandRatio(leftEyeButton, 1.0f);
+        horizontalLayout.setExpandRatio(rightEyeButton, 1.0f);
+        horizontalLayout.setWidth("100%");
 
         final Button noseButton = new Button(VaadinIcons.CARET_UP);
         noseButton.setStyleName(ValoTheme.BUTTON_LINK);
@@ -47,6 +53,8 @@ public class FaceView implements ComponentView, View
         final VerticalLayout faceLayout = new VerticalLayout();
         faceLayout.setStyleName("face");
         faceLayout.addComponents(horizontalLayout, noseButton, mouthField);
+        faceLayout.setComponentAlignment(noseButton, Alignment.MIDDLE_CENTER);
+        faceLayout.setComponentAlignment(mouthField, Alignment.BOTTOM_CENTER);
 
         // TODO: arrange the components so that they form a face
         // Tip: use setWidth(), setExpandRatio() and setComponentAlignment()
